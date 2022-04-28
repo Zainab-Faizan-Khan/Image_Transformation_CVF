@@ -1,0 +1,118 @@
+<html>
+
+<head>
+	<title>Python Flask Upload and display image</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</head>
+<script>
+	function calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
+		var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+		return { width: srcWidth * ratio, height: srcHeight * ratio };
+
+	} 
+	// <!-- jo image select krtay uska url ajayega  -->
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				var img = new Image()
+				img.src = e.target.result;
+				img.onload = function () {
+					var size = calculateAspectRatioFit(this.width, this.height, 500, 500)
+					$('#input_image').attr('src', e.target.result).width(size.width).height(size.height);
+				}
+
+			};
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+
+	function download() {
+
+		const link = document.createElement("a");
+
+		link.href = document.getElementById('result').src;
+		link.download = 'download.png';
+
+		document.body.appendChild(link);
+
+		link.dispatchEvent(
+			new MouseEvent('click', {
+				bubbles: true,
+				cancelable: true,
+				view: window
+			})
+		);
+
+		document.body.removeChild(link);
+	}
+// ajax sai yai hota kai request jb aik dafa jaati hai tou wou jb tk result show hoga
+// this function let you to display image on the same page
+	function send_request(url) {
+		var formData = new FormData();
+		formData.append('file', $('#input_file')[0].files[0]);
+
+		$.ajax({
+			url: url,
+			type: 'POST',
+			data: formData,
+			processData: false,
+			contentType: false,
+			xhrFields: {
+				responseType: 'blob'
+			},
+			success: function (data) {
+				let img = document.getElementById('result');
+				const blobUrl = URL.createObjectURL(data);
+				img.src = blobUrl;
+				img.width = $('#input_image').width();
+				img.height = $('#input_image').height();
+			}
+		});
+	}
+
+
+
+</script>
+
+<body>
+	<p>
+	<h1>Python Flask Upload and display image</h1>
+	</p>
+	<div class="container">
+		<div class="row">
+			<h2>Select a file to upload</h2>
+			
+			<p>
+				
+				<input type="file" name="file" onchange="readURL(this);" id="input_file" accept="image/png, image/jpeg, image/gif"/>
+				<img id="input_image" />
+				<br><br>
+
+			</p>
+            <!-- called the route created in app.py -->
+			<button onclick="send_request('/grayscale');">
+				Grayscale
+			</button>
+
+			<button onclick="send_request('/blur');">
+				Blur
+			</button>
+			<br><br>
+			<button onclick="download()">
+				Download
+			</button>
+
+			<br><br>
+			<img id="result" />
+			<br><br>
+
+
+		</div>
+	</div>
+</body>
+
+</html>
