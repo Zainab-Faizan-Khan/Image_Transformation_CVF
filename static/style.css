@@ -120,14 +120,9 @@
   .btn:active {
     transform: scale(0.95);
   }
-  
-
-  .upload{
+   .upload{
     display: flex;
     flex-direction: column;
-  }
-  .imgshow{
-    position: relative;
   }
 
   /*-------------------- transformation buttons------------------------ */
