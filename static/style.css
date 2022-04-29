@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+  }
+
+  :root{
+    --main-font:  'Alegreya SC', serif;
+    --secondary-font: 'Italianno', cursive;
+    --body-font: 'Cabin', sans-serif;
+    --main-font-color-dark:#ffffff;
+    --secondary-font-color: #c59d5f;
+    --body-font-color:rgb(90, 89, 89);
+}
+
+  body{
+    background-image: url(images/bgg.jpg);
+    background-position: center;
+    background-attachment:fixed;
+    background-size: cover;
+  }  
+    .navbar{
+    width: 100%;
+    height: 10vh;
+    background-color: #da907c7b;
+    display: flex;
+    position: fixed;    
+    align-items: center;
+    backdrop-filter: blur(10px);
+    z-index: 50;
+    } 
+  .logo {
+    margin-left: 20px;
+    width: 50px;
+    cursor: pointer;
+  }
+  nav{
+    flex:1;
+    padding-left: 90px;
+  }
+  nav ul li{
+    display: inline-block;
+    list-style: none;
+    margin: 0px 20px;
+  }
+  nav ul li a{
+    text-decoration: none;
+    color: rgb(99, 42, 143);
+  }
+  /*-------------------------------- content----------------------- */
+  .container {
+    height: 100vh;
+    width: 100%;    
+    padding:4%;
+    box-sizing: border-box;
+    position: relative;
+  }
+  .content {    
+    /* background-color: rgba(189, 208, 215, 0.427); */
+    /* box-shadow: 3px 8px 22px rgba(94,28,68,9.15); */
+    padding: 10px;	
+  }
+  .content .heading  {   
+    margin-left: 34%;
+    font-size: 50px;
+    font-weight: 100;
+    color: #232d60;
+  }
+  .content p{
+    margin-top: 10px;
+    font-size: 20px;
+    color: #040c3e;
+  }
+  
+  /*-------------------------- button upload  ---------------------------*/
+  .main{
+    background-color: rgba(189, 208, 215, 0.427);
+    box-shadow: 3px 8px 22px rgba(94,28,68,9.15);
+    margin-top: 20px;
+    padding: 30px;	
+    border-radius: 12px;
+  }  
+  ::-webkit-file-upload-button{
+      visibility: hidden;
+    /* visibility: visible; */
+  }
+  
+  .labels{
+    /* background-color: rgb(194, 159, 159); */
+    padding: 5px;
+    font-weight:bold;
+  }
+  input[type="file"] 
+  {
+    padding-top: 10px;
+    padding-left: -10p;  
+  } 
+  
+  .btn{
+    margin: 10px;
+    width: 25%;
+    height: 40px;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: rgb(10, 10, 10);
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0px 0px 14px -7px #75f4e1;
+    background-image: linear-gradient(45deg, #7cdacc  0%, #b3b6f2fe  51%, #7cdacc 100%);
+    cursor:pointer;
+    
+  }  
+  .btn:hover {
+    background-position: right center;
+    /* change the direction of the change here */
+    color: #fff;
+  }  
+
+  .btn:active {
+    transform: scale(0.95);
+  }
+  
+
+  .upload{
+    display: flex;
+    flex-direction: column;
+  }
+  .imgshow{
+    position: relative;
+  }
+
+  /*-------------------- transformation buttons------------------------ */
+    .buttons{
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+    
+    }
+  .button1 {
+    background-image: url(images/greyscale.png);
+    background-position: center;
+    background-size: cover;
+    margin: 10px;
+    /* background: linear-gradient(to bottom right, #b3b6f2fe, #7cdacc); */
+    border: 0;
+    width: 200px;
+    height: 120px;
+    border-radius: 10px;
+    color: black;
+    cursor: pointer;
+    font-family: -apple-system,system-ui,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    outline: transparent;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: box-shadow .2s ease-in-out;
+  }
+  .button1:nth-child(2){
+    background-image: url(images/blur.png);
+  }
+  .button1:nth-child(3){
+    background-image: url(images/bg2.jpg);
+  }
+  .button1:nth-child(4){
+    background-image: url(images/bg3.jpg);
+  }
+  .button1:nth-child(5){
+    background-image: url(images/bg1.jpg);
+  }
+  
+  .button1:not([disabled]):focus {
+    box-shadow: 0 0 .25rem rgba(142, 140, 140, 0.5), -.125rem -.125rem 1rem rgba(141, 71, 239, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+  }
+  
+  .button1:not([disabled]):hover {
+    box-shadow: 0 0 .25rem rgba(152, 151, 171, 0.5), -.125rem -.125rem 1rem rgba(135, 71, 239, 0.5), .125rem .125rem 1rem rgba(255, 154, 90, 0.5);
+  }
+  
+  
