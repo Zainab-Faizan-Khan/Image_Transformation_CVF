@@ -1,5 +1,5 @@
 from flask import Flask, flash, request, redirect, send_file, url_for, render_template
-from blur import convert_to_grayscale, blur_image , sketchimage #importing all the functions from blur.py
+from blur import convert_to_grayscale, blur_image , sketchimage, sharpen_image , contrast_image, dull_image,transpose_image #importing all the functions from blur.py
 import os
 
 app = Flask(__name__) 
@@ -50,6 +50,50 @@ def sketch():
     if file and allowed_file(file.filename):
         sketch_img = sketchimage(file)
         return send_file(sketch_img, mimetype='image/PNG')
+
+@app.route('/sharpen', methods=['POST'])
+def sharpen():
+    if 'file' not in request.files:
+        return redirect('/')
+    file = request.files['file']
+    if file.filename == '':
+        return redirect('/')
+    if file and allowed_file(file.filename):
+        sharpen_img = sharpen_image(file)
+        return send_file(sharpen_img, mimetype='image/PNG')
+
+@app.route('/contrast', methods=['POST'])
+def contrast():
+    if 'file' not in request.files:
+        return redirect('/')
+    file = request.files['file']
+    if file.filename == '':
+        return redirect('/')
+    if file and allowed_file(file.filename):
+        contrast_img = contrast_image(file)
+        return send_file(contrast_img, mimetype='image/PNG')
+
+@app.route('/dull', methods=['POST'])
+def dull():
+    if 'file' not in request.files:
+        return redirect('/')
+    file = request.files['file']
+    if file.filename == '':
+        return redirect('/')
+    if file and allowed_file(file.filename):
+        dull_img = dull_image(file)
+        return send_file(dull_img, mimetype='image/PNG')
+
+@app.route('/transpose', methods=['POST'])
+def transpose():
+    if 'file' not in request.files:
+        return redirect('/')
+    file = request.files['file']
+    if file.filename == '':
+        return redirect('/')
+    if file and allowed_file(file.filename):
+        transpose_img = transpose_image(file)
+        return send_file(transpose_img, mimetype='image/PNG')
 
 if __name__ == "__main__":
     app.debug='true'
