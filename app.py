@@ -1,5 +1,5 @@
 from flask import Flask, flash, request, redirect, send_file, url_for, render_template
-from blur import convert_to_grayscale, blur_image #importing all the functions from blur.py
+from blur import convert_to_grayscale, blur_image , sketchimage #importing all the functions from blur.py
 import os
 
 app = Flask(__name__) 
@@ -40,6 +40,16 @@ def blur():
         blurred_img = blur_image(file)
         return send_file(blurred_img, mimetype='image/PNG')
 
+@app.route('/sketch', methods=['POST'])
+def sketch():
+    if 'file' not in request.files:
+        return redirect('/')
+    file = request.files['file']
+    if file.filename == '':
+        return redirect('/')
+    if file and allowed_file(file.filename):
+        sketch_img = sketchimage(file)
+        return send_file(sketch_img, mimetype='image/PNG')
 
 if __name__ == "__main__":
     app.debug='true'

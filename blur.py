@@ -17,4 +17,11 @@ def convert_to_grayscale(image):
     file_object.seek(0)
     return (file_object)
     
+def sketchimage(image):
+    im = Image.open(image).convert('L')       #convert into sketch function  
+    file_object = io.BytesIO()
+    im.save(file_object, "PNG")
+    file_object.seek(0)
+    return (file_object)
+    
 
